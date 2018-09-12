@@ -49,8 +49,11 @@ h2{
     box-shadow: 8px 8px 0px #aaa;
     padding-top: 80px;
     padding-bottom: 10px;
-    padding-left: 50px;
-    padding-right: 50px;
+ 
+}
+img{
+    margin-left: auto;
+    margin-right: auto;
 }
 .card{
      background-image: url(../img/fond.jpg);

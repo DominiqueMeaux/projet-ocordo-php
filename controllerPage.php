@@ -1,19 +1,20 @@
 <?php
+
 $regexPhoneNumber = '/^[0-9]{10}$/';
 $regexName = '/^[a-zA-Zàáâãäåçèéêëìíîïðòóôõöùúûüýÿ\-\'\ ]+$/';
 $regexText = '/^[0-9a-zA-Zàáâãäåçèéêëìíîïðòóôõöùúûüýÿ\-\'\ ]+$/';
 $regexAddress = '/^[a-zA-Zàáâãäåçèéêëìíîïðòóôõöùúûüýÿ\-\'\ ]+$/';
-$formError = array ();
+$formError = array();
 if (file_exists('source.xml')) {
     $xml = simplexml_load_file('source.xml');
     $count = count($xml->page);
     for ($i = 1; $i != $count + 1; $i++) {
         $menu = $xml->page[$i - 1]->menu;
-        $display= '<a class="navbar-brand ml-5" href="OcordoPage' . $i . '.html">' . $menu . '</a>';
+        $display = '<a class="navbar-brand ml-5" href="OcordoPage' . $i . '.html">' . $menu . '</a>';
         echo $display;
+    }
 }
-}
-if (isset($_GET['page'])){
+if (isset($_GET['page'])) {
     $page = intval(htmlspecialchars($_GET['page']));
     $page = $page - 1;
 } else {
@@ -27,7 +28,7 @@ if (isset($_POST['your-name'])) {
         //stocker dans le tableau le rapport d'érreur
         $formError['your-name'] = 'Nom invalide.';
     }
-     if (empty($lastName)) {
+    if (empty($lastName)) {
         //stocker dans le tableau le rapport d'érreur
         $formError['your-name'] = 'Champ nom obligatoire.';
     }
@@ -83,5 +84,8 @@ if (isset($_POST['your-email'])) {
     if (!FILTER_VAR($mail, FILTER_VALIDATE_EMAIL)) {
         $emailError = 'Email invalide.';
     }
+}
+if ($page > $count ) {
+    header('Location: error404.php');
 }
 ?>
